@@ -10,3 +10,7 @@ https://github.com/RavenKyu/OpenTutorials_PyQt
 tkinter link + python basic
 ------------------
 http://engineerk.com/221247581225
+
+python book
+----------------
+https://wikidocs.net/#_
