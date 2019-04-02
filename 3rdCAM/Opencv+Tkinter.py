@@ -1,5 +1,3 @@
-
-```python
 import tkinter
 import cv2
 import PIL.Image, PIL.ImageTk
@@ -75,4 +73,3 @@ class MyVideoCapture:
 
  # Create a window and pass it to the Application object
 App(tkinter.Tk(), "Tkinter and OpenCV")
-```
