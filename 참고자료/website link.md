@@ -6,3 +6,7 @@ pyqt link
 --------------
 https://opentutorials.org/module/544
 https://github.com/RavenKyu/OpenTutorials_PyQt
+
+tkinter link + python basic
+------------------
+http://engineerk.com/221247581225
