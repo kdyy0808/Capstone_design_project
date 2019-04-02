@@ -14,3 +14,7 @@ http://engineerk.com/221247581225
 python book
 ----------------
 https://wikidocs.net/#_
+
+파이썬 tkinter에서 쓰레드를 사용하려면
+----------------------------------
+https://thrillfighter.tistory.com/413
