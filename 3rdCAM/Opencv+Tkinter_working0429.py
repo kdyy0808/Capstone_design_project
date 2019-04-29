@@ -3,16 +3,22 @@ import cv2
 import PIL.Image, PIL.ImageTk
 import time
 
-class App:
+class Color_catagory:
+    def __init__(self):
+        self.H_min = 0
+        self.H_max = 359
+        self.S_min = 0
+        self.S_max = 255
+        self.V_min = 0
+        self.V_max = 255
+
+class App(Color_catagory):
     btnGrayFlag=0
-
-    #Scroll_H_max=0
-    #Scroll_S_min=0
-    #Scroll_S_max = 0
-    #Scroll_V_min = 0
-    #Scroll_V_max = 0
-
     def __init__(self, window, window_title, video_source=0):
+        self.Red = Color_catagory
+        self.Green = Color_catagory
+        self.Blue = Color_catagory
+
         self.window = window
         self.window.title(window_title)
         self.video_source = video_source
@@ -27,6 +33,7 @@ class App:
         self.update()
 
         self.window.mainloop()
+
     def screen_init(self,window):
         self.canvas = tkinter.Canvas(window, width=self.vid.width, height=self.vid.height)
         self.canvas.grid(columnspan=30, rowspan=20)
@@ -37,14 +44,29 @@ class App:
         self.btn_dd.grid(column=31, row=0)
 
         #def check():
+        def radio_control_R():
+            #self.RadioVariety_Red.get() == 1:
+            self.Rbtn_Color_Green.deselect()
+            self.Rbtn_Color_Blue.deselect()
 
-        self.RadioVariety_Red = tkinter.IntVar()
-        self.RadioVariety_Blue = tkinter.IntVar()
+        def radio_control_G():
+            #self.RadioVariety_Green.get() == 1:
+            self.Rbtn_Color_Red.deselect()
+            self.Rbtn_Color_Blue.deselect()
 
-        self.Rbtn_Color_Red = tkinter.Radiobutton(window, text='Red', variable=self.RadioVariety_Red)
+        def radio_control_B():
+            #self.RadioVariety_Blue.get() == 1:
+            self.Rbtn_Color_Red.deselect()
+            self.Rbtn_Color_Green.deselect()
+
+        self.var= tkinter.IntVar()
+
+        self.Rbtn_Color_Red = tkinter.Radiobutton(window, text='Red',value = 1, variable=self.var, command=radio_control_R)
         self.Rbtn_Color_Red.grid(column=31,row=11)
-        #self.Rbtn_Color_Blue = tkinter.Radiobutton(window, text='Blue', variable=self.RadioVariety_Red )
-        #self.Rbtn_Color_Blue.grid(column=32, row=11)
+        self.Rbtn_Color_Green = tkinter.Radiobutton(window, text='Green',value = 2, variable=self.var, command=radio_control_G)
+        self.Rbtn_Color_Green.grid(column=32, row=11)
+        self.Rbtn_Color_Blue = tkinter.Radiobutton(window, text='Blue', value=3, variable=self.var, command=radio_control_B)
+        self.Rbtn_Color_Blue.grid(column=33, row=11)
 
         self.L1 = tkinter.Label(window,text="H_min: ", width=10, height=2, fg="red", relief="solid")
         self.L1.grid(column=31, row=8)
@@ -59,18 +81,27 @@ class App:
         self.L6 = tkinter.Label(window, text="V_max: ", width=10, height=2, fg="red", relief="solid")
         self.L6.grid(column=32, row=10)
 
+
         def show_values(event):
-            value1 = "H_min :" + str(self.Scroll_H_min.get())
+
+            if self.var.get() ==1:
+                self.thisColor = self.Red
+            elif self.var.get() ==2:
+                self.thisColor = self.Green
+            else: #self.var.get() ==3:
+                self.thisColor = self.Blue
+
+            value1 = "H_min :" + str( self.thisColor.H_min)
             self.L1.config(text=value1)
-            value2 = "H_max :" + str(self.Scroll_H_max.get())
+            value2 = "H_max :" + str( self.thisColor.H_max)
             self.L2.config(text=value2)
-            value3 = "S_min :" + str(self.Scroll_S_min.get())
+            value3 = "S_min :" + str( self.thisColor.S_min)
             self.L3.config(text=value3)
-            value4 = "S_max :" + str(self.Scroll_S_max.get())
+            value4 = "S_max :" + str( self.thisColor.S_max)
             self.L4.config(text=value4)
-            value5 = "V_min :" + str(self.Scroll_V_min.get())
+            value5 = "V_min :" + str( self.thisColor.V_min)
             self.L5.config(text=value5)
-            value6 = "V_max :" + str(self.Scroll_V_max.get())
+            value6 = "V_max :" + str( self.thisColor.V_max)
             self.L6.config(text=value6)
 
 
