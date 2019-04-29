@@ -23,4 +23,9 @@ https://thrillfighter.tistory.com/413
 tkinter + opencv 
 --------------------
 https://s-engineer.tistory.com/16
+
 https://solarianprogrammer.com/2018/04/21/python-opencv-show-video-tkinter-window/
+
+https://076923.github.io/posts/
+
+https://www.tutorialspoint.com/python/tk_radiobutton.htm
