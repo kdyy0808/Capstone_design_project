@@ -201,22 +201,22 @@ class App(Color_catagory):
 
          if ret:
             if self.btnGrayFlag==1:
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                frame = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             if self.RadioFlag==1:
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+                frame = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
                 h = cv2.inRange(frame, (self.Red.H_min, self.Red.S_min, self.Red.V_min), (self.Red.H_max, self.Red.S_max, self.Red.V_max))
                 frame = cv2.bitwise_and(frame, frame, mask = h)
-                frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
+                frame = cv2.cvtColor(frame, cv2.COLOR_HSV2RGB)
             elif self.RadioFlag==2:
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+                frame = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
                 h = cv2.inRange(frame, (self.Green.H_min, self.Green.S_min, self.Green.V_min), (self.Green.H_max, self.Green.S_max, self.Green.V_max))
                 frame = cv2.bitwise_and(frame, frame, mask = h)
-                frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
+                frame = cv2.cvtColor(frame, cv2.COLOR_HSV2RGB)
             elif self.RadioFlag==3:
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+                frame = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
                 h = cv2.inRange(frame, (self.Blue.H_min, self.Blue.S_min, self.Blue.V_min), (self.Blue.H_max, self.Blue.S_max, self.Blue.V_max))
                 frame = cv2.bitwise_and(frame, frame, mask = h)
-                frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
+                frame = cv2.cvtColor(frame, cv2.COLOR_HSV2RGB)
 
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame))
             self.canvas.create_image(0, 0, image = self.photo, anchor = tkinter.NW)
