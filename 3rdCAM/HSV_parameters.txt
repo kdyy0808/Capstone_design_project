@@ -1,0 +1,14 @@
+HSV_parameters
+============================
+Red H_min : 156 	 Red H_max : 8
+Red S_min : 19 	 Red S_max : 206
+Red V_min : 101 	 Red V_max : 229
+============================
+Green H_min : 66 	 Green H_max : 82
+Green S_min : 15 	 Green S_max : 120
+Green V_min : 19 	 Green V_max : 225
+============================
+Blue H_min : 71 	 Blue H_max : 114
+Blue S_min : 146 	 Blue S_max : 255
+Blue V_min : 143 	 Blue V_max : 236
+============================
