@@ -3,6 +3,7 @@ import cv2
 import PIL.Image, PIL.ImageTk
 import time
 import os
+import math
 
 class Color_catagory:
     def __init__(self):
@@ -182,10 +183,13 @@ class App(Color_catagory):
         self.L5.grid(column=31, row=10)
         self.L6 = tkinter.Label(window, text="V_max: ", width=10, height=2, fg="red", relief="solid")
         self.L6.grid(column=32, row=10)
+        self.btnColormap = tkinter.Button(window, text="Colormap", width=10, command=self.ShowColormap)
+        self.btnColormap.grid(column=33, row=8)
         self.btnload = tkinter.Button(window, text="Load", width=10, command=self.loadParameter)
         self.btnload.grid(column=33, row=9)
         self.btnsave = tkinter.Button(window, text="Save", width=10, command=self.saveParameter)
         self.btnsave.grid(column=33,row=10)
+
 
 
         def show_values(event):
@@ -336,7 +340,7 @@ class App(Color_catagory):
         cv2.rectangle(self.Outframe, (self.Red.max_x, self.Red.max_y), (self.Red.max_x + self.Red.max_width, self.Red.max_y + self.Red.max_height), (255, 125, 125), 5, cv2.LINE_8)
         cv2.rectangle(self.Outframe, (self.Green.max_x, self.Green.max_y), (self.Green.max_x + self.Green.max_width, self.Green.max_y + self.Green.max_height), (0, 125, 125), 5, cv2.LINE_8)
         cv2.rectangle(self.Outframe, (self.Blue.max_x, self.Blue.max_y), (self.Blue.max_x + self.Blue.max_width, self.Blue.max_y + self.Blue.max_height), (255, 255, 255), 5, cv2.LINE_8)
-        cv2.imshow("ddd", self.Outframe)
+        #cv2.imshow("ddd", self.Outframe)
     def labeling(self):
         frame_Red_lab = cv2.cvtColor(self.frame_Red, cv2.COLOR_RGB2GRAY)
         _, th_Red = cv2.threshold(frame_Red_lab, 1, 255, cv2.THRESH_BINARY)
@@ -389,10 +393,34 @@ class App(Color_catagory):
                 self.Blue.max_width = stats[i, 2]
                 self.Blue.max_height = stats[i, 3]
                 self.Blue.max_area = stats[i, 4]
+
     def ShowColormap(self):
+        colormap = cv2.imread("colormap.jpg", cv2.IMREAD_ANYCOLOR)
+        #ori_colormap = cv2.imread("colormap.jpg", cv2.IMREAD_ANYCOLOR)
 
-
-
+        cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Red.H_min * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Red.H_min * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Red.H_max * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Red.H_max * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Green.H_min * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Green.H_min * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Green.H_max * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Green.H_max * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Blue.H_min * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Blue.H_min * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Blue.H_max * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Blue.H_max * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.imshow("Colormap", colormap)
+        # def onMouse(event, x, y, flags, param):
+        #     print(event, x,y, flags)
+        #     if event == cv2.EVENT_MOUSEMOVE and flags == cv2.EVENT_FLAG_LBUTTON:
+        #         colormap = ori_colormap
+        #
+        #         cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Red.H_min * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Red.H_min * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        #         cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Red.H_max * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Red.H_max * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        #         cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Green.H_min * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Green.H_min * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        #         cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Green.H_max * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Green.H_max * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        #         cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Blue.H_min * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Blue.H_min * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        #         cv2.line(colormap, (150, 150), (int(150 + 145 * math.cos(math.radians(90 - self.Blue.H_max * 2))), int(150 - 145 * math.sin(math.radians(90 - self.Blue.H_max * 2)))), (0, 0, 0), 3, cv2.LINE_AA)
+        #
+        #         cv2.imshow("Colormap", colormap)
+        #         colormap = ori_colormap
+        #         #cv2.line
+        # cv2.setMouseCallback("Colormap", onMouse)
 
 
     def ActiveRGB2GRAY(self):
