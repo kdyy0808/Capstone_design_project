@@ -29,3 +29,11 @@ https://solarianprogrammer.com/2018/04/21/python-opencv-show-video-tkinter-windo
 https://076923.github.io/posts/
 
 https://www.tutorialspoint.com/python/tk_radiobutton.htm
+
+통신 부분(파이썬과 아두이노 시리얼 통신)
+----------------
+https://kamang-it.tistory.com/entry/Arduino-Python%EC%9C%BC%EB%A1%9C-UARTSerial%ED%86%B5%EC%8B%A0%ED%95%98%EA%B8%B0
+
+파이썬 입문서
+---------------------
+https://python.bakyeono.net/
