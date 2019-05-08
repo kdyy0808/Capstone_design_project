@@ -1,12 +1,13 @@
 import tkinter
 import tkinter.ttk
+from Serial_communicationSend import *
 from tkinter import *
+import serial
 
 window=tkinter.Tk()
 window.title("Walking parameter assistance")
 window.geometry("640x400+100+100")
 window.resizable(False, False)
-
 
 btnMotionparameter=tkinter.Button(window, text="Motion Parameter")
 lbl_1= tkinter.Label(window, text="RV")
@@ -34,8 +35,8 @@ btnOpen=tkinter.Button(window, text="OPEN")
 
 frame=tkinter.Frame(window)
 listbox=tkinter.Listbox(frame)
-for line in range(1,15):
-   listbox.insert(line, str(line) + "/15")
+for line in range(1,10):
+   listbox.insert(line, " ")
 
 frame2=tkinter.Frame(window)
 listbox2=tkinter.Listbox(frame2)
@@ -70,16 +71,15 @@ frame2.place(x=430, y=100)
 txtsendcommand.place(x=280, y=265)
 command_count = 0
 
-
 def sendCommand(event):
     global command_count
     str = txtsendcommand.get(0.0, tkinter.END)
     str = str.split()
     str = str[command_count]
+    sendCommandtoDSP(str)
     listbox.insert(30000-command_count, str)
     listbox.see(30000-command_count)
     command_count += 1
-
 
 btnMotionparameter.bind("<Button-1>", sendCommand)
 txtsendcommand.bind("<Return>", sendCommand)
@@ -87,24 +87,17 @@ txtsendcommand.bind("<Return>", sendCommand)
 window.mainloop()
 
 
-# import tkinter
-#
-# window=tkinter.Tk()
-# window.title("YUN DAE HEE")
-# window.geometry("640x400+100+100")
-# window.resizable(True, True)
-#
-# text=tkinter.Text(window)
-#
-# text.insert(tkinter.CURRENT, "안녕하세요.\n")
-# text.insert("current", "반습니다.")
-# text.insert(0.6, "갑")
-#
-# text.pack()
-#
-# text.tag_add("강조", "1.0", "1.6")
-# text.tag_config("강조", background="yellow")
-# text.tag_remove("강조", "1.1", "1.2")
-# # text.delete(, 2.0)
-# tkinter.INSERT=1.0
-# window.mainloop()
+
+'''
+import serial
+
+ser = serial.Serial(
+    port='COM8',
+    baudrate=9600,
+)
+
+while True:
+    print("insert op :", end=' ')
+    op = input()
+    ser.write(op.encode())
+'''
