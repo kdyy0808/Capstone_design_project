@@ -4,6 +4,7 @@ import PIL.Image, PIL.ImageTk
 import time
 import os
 import math
+import numpy as np
 
 class Color_catagory:
     def __init__(self):
@@ -33,6 +34,7 @@ class App(Color_catagory):
 
         self.window = window
         self.window.title(window_title)
+        self.window.geometry("900x500+100+100")
         self.video_source = video_source
         self.Scroll_H_min = tkinter.Scale()
         # open video source (by default this will try to open the computer webcam)
@@ -96,16 +98,9 @@ class App(Color_catagory):
 
     def screen_init(self,window):
         self.canvas = tkinter.Canvas(window, width=self.vid.width, height=self.vid.height)
-        self.canvas.grid(columnspan=30, rowspan=20)
-        # self.btn_dd = tkinter.Button(window, text="dd", width=10, command=self.ActiveRGB2GRAY)
-        # # self.btn_dd.pack(anchor='e', expand=True)
-        # self.btn_GRAYSCALE = tkinter.Button(window, text="GrayScale", width=10, command=self.ActiveRGB2GRAY)
-        # self.btn_GRAYSCALE.grid(column=31, row=1)
-        # self.btn_dd.grid(column=31, row=0)
-
-        #def check():
+        # self.canvas.grid(columnspan=30, rowspan=20)
+        self.canvas.place(x=0,y=0)
         def radio_control_R():
-            #self.RadioVariety_Red.get() == 1:
             self.Rbtn_Color_Green.deselect()
             self.Rbtn_Color_Blue.deselect()
             self.Rbtn_Color_All.deselect()
@@ -119,7 +114,6 @@ class App(Color_catagory):
             self.RadioFlag=1
 
         def radio_control_G():
-            #self.RadioVariety_Green.get() == 1:
             self.Rbtn_Color_Red.deselect()
             self.Rbtn_Color_Blue.deselect()
             self.Rbtn_Color_All.deselect()
@@ -133,7 +127,6 @@ class App(Color_catagory):
             self.RadioFlag=2
 
         def radio_control_B():
-            #self.RadioVariety_Blue.get() == 1:
             self.Rbtn_Color_Red.deselect()
             self.Rbtn_Color_Green.deselect()
             self.Rbtn_Color_All.deselect()
@@ -162,35 +155,47 @@ class App(Color_catagory):
         self.var = tkinter.IntVar()
 
         self.Rbtn_Color_Red = tkinter.Radiobutton(window, text='Red',value = 1, variable=self.var, command=radio_control_R)
-        self.Rbtn_Color_Red.grid(column=31,row=11)
+        # self.Rbtn_Color_Red.grid(column=31,row=11)
+        self.Rbtn_Color_Red.place(x=640, y=380)
+
         self.Rbtn_Color_Green = tkinter.Radiobutton(window, text='Green',value = 2, variable=self.var, command=radio_control_G)
-        self.Rbtn_Color_Green.grid(column=32, row=11)
+        # self.Rbtn_Color_Green.grid(column=32, row=11)
+        self.Rbtn_Color_Green.place(x=695, y=380)
+
         self.Rbtn_Color_Blue = tkinter.Radiobutton(window, text='Blue', value=3, variable=self.var, command=radio_control_B)
-        self.Rbtn_Color_Blue.grid(column=33, row=11)
+        # self.Rbtn_Color_Blue.grid(column=33, row=11)
+        self.Rbtn_Color_Blue.place(x=750, y=380)
+
 
         self.Rbtn_Color_All = tkinter.Radiobutton(window, text='All', value=4, variable=self.var,command=radio_control_All)
-        self.Rbtn_Color_All.grid(column=31, row=12)
+        # self.Rbtn_Color_All.grid(column=31, row=12)
+        self.Rbtn_Color_All.place(x=640, y=400)
 
         self.L1 = tkinter.Label(window,text="H_min: ", width=10, height=2, fg="red", relief="solid")
-        self.L1.grid(column=31, row=8)
+        # self.L1.grid(column=31, row=8)
+        self.L1.place(x=650, y=250)
+
         self.L2 = tkinter.Label(window, text="H_max: ", width=10, height=2, fg="red", relief="solid")
-        self.L2.grid(column=32, row=8)
+        # self.L2.grid(column=32, row=8)
+        self.L2.place(x=730, y=250)
+
         self.L3 = tkinter.Label(window, text="S_min: ", width=10, height=2, fg="red", relief="solid")
-        self.L3.grid(column=31, row=9)
+        self.L3.place(x=650, y=290)
+
         self.L4 = tkinter.Label(window, text="S_max: ", width=10, height=2, fg="red", relief="solid")
-        self.L4.grid(column=32, row=9)
+        self.L4.place(x=730, y=290)
         self.L5 = tkinter.Label(window, text="V_min: ", width=10, height=2, fg="red", relief="solid")
-        self.L5.grid(column=31, row=10)
+        self.L5.place(x=650, y=330)
         self.L6 = tkinter.Label(window, text="V_max: ", width=10, height=2, fg="red", relief="solid")
-        self.L6.grid(column=32, row=10)
+        self.L6.place(x=730, y=330)
         self.btnColormap = tkinter.Button(window, text="Colormap", width=10, command=self.ShowColormap)
-        self.btnColormap.grid(column=33, row=8)
+        # self.btnColormap.grid(column=33, row=8)
+        self.btnColormap.place(x=815,y=254)
         self.btnload = tkinter.Button(window, text="Load", width=10, command=self.loadParameter)
-        self.btnload.grid(column=33, row=9)
+        # self.btnload.grid(column=33, row=9)
+        self.btnload.place(x=815, y=293)
         self.btnsave = tkinter.Button(window, text="Save", width=10, command=self.saveParameter)
-        self.btnsave.grid(column=33,row=10)
-
-
+        self.btnsave.place(x=815, y=333)
 
         def show_values(event):
 
@@ -224,27 +229,30 @@ class App(Color_catagory):
 
         self.Scroll_H_min = tkinter.Scale(window, from_=0, to=180, orient=tkinter.HORIZONTAL)
         self.Scroll_H_min.set(0)
-        self.Scroll_H_min.grid(column=31, row=2)
+        # self.Scroll_H_min.grid(column=31, row=2)
+        self.Scroll_H_min.place(x=650, y=0)
+
+
         self.Scroll_H_min.bind("<ButtonRelease-1>", show_values)
         self.Scroll_H_max = tkinter.Scale(window, from_=0, to=180, orient=tkinter.HORIZONTAL)
         self.Scroll_H_max.set(255)
-        self.Scroll_H_max.grid(column=31, row=3)
+        self.Scroll_H_max.place(x=650, y=40)
         self.Scroll_H_max.bind("<ButtonRelease-1>", show_values)
         self.Scroll_S_min = tkinter.Scale(window, from_=0, to=255, orient=tkinter.HORIZONTAL)
         self.Scroll_S_min.set(0)
-        self.Scroll_S_min.grid(column=31, row=4)
+        self.Scroll_S_min.place(x=650, y=80)
         self.Scroll_S_min.bind("<ButtonRelease-1>", show_values)
         self.Scroll_S_max = tkinter.Scale(window, from_=0, to=255, orient=tkinter.HORIZONTAL)
         self.Scroll_S_max.set(255)
-        self.Scroll_S_max.grid(column=31, row=5)
+        self.Scroll_S_max.place(x=650, y=120)
         self.Scroll_S_max.bind("<ButtonRelease-1>", show_values)
         self.Scroll_V_min = tkinter.Scale(window, from_=0, to=255, orient=tkinter.HORIZONTAL)
         self.Scroll_V_min.set(0)
-        self.Scroll_V_min.grid(column=31, row=6)
+        self.Scroll_V_min.place(x=650, y=160)
         self.Scroll_V_min.bind("<ButtonRelease-1>", show_values)
         self.Scroll_V_max = tkinter.Scale(window, from_=0, to=255, orient=tkinter.HORIZONTAL)
         self.Scroll_V_max.set(255)
-        self.Scroll_V_max.grid(column=31, row=7)
+        self.Scroll_V_max.place(x=650, y=200)
         self.Scroll_V_max.bind("<ButtonRelease-1>", show_values)
 
     def snapshot(self):
@@ -295,53 +303,28 @@ class App(Color_catagory):
             h = cv2.inRange(frame, (self.Blue.H_min, self.Blue.S_min, self.Blue.V_min), (self.Blue.H_max, self.Blue.S_max, self.Blue.V_max))
             self.frame_Blue = cv2.bitwise_and(frame, frame, mask=h)
 
-
         self.labeling()
-
-        # frame_Red_lab = cv2.cvtColor(frame_Red,cv2.COLOR_RGB2GRAY)
-        # _, th = cv2.threshold(frame_Red_lab,1,255, cv2.THRESH_BINARY)
-        # retval, labels,stats,centroids = cv2.connectedComponentsWithStats(th, connectivity=8)
-        # self.Red.max_x =0
-        # self.Red.max_y = 0
-        # self.Red.max_width = 0
-        # self.Red.max_height = 0
-        # self.Red.max_area = 0
-        # for i in range(retval):
-        #     if stats[i,4]<30000 and stats[i,4]>self.Red.max_area:
-        #         self.Red.max_x = stats[i, 0]
-        #         self.Red.max_y = stats[i, 1]
-        #         self.Red.max_width = stats[i, 2]
-        #         self.Red.max_height = stats[i, 3]
-        #         self.Red.max_area = stats[i, 4]
-
-
-
-        # cv2.rectangle(self.Outframe,(max_x,max_y),(max_x+max_width,max_y+max_height),(255,0,0),5, cv2.LINE_8)
-        # cv2.imshow("ddd",self.Outframe)
-
-
-        #cv2.imshow("red",frame_Red)
 
         if self.RadioFlag == 1:
             self.Outframe = self.frame_Red
-            #cv2.imshow("fra", frame)
-            # frame = cv2.cvtColor(frame_Red, cv2.COLOR_HSV2RGB)
-            # self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame))
+
         elif self.RadioFlag == 2:
             self.Outframe = self.frame_Green
-            # frame = cv2.cvtColor(frame_Green, cv2.COLOR_HSV2RGB)
-            # self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame))
+
         elif self.RadioFlag == 3:
             self.Outframe = self.frame_Blue
-            # frame = cv2.cvtColor(frame_Blue, cv2.COLOR_HSV2RGB)
-            # self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame))
+
         else:
             self.Outframe = frame
-        cv2.rectangle(self.Outframe, (self.Red.max_x, self.Red.max_y), (self.Red.max_x + self.Red.max_width, self.Red.max_y + self.Red.max_height), (255, 125, 125), 5, cv2.LINE_8)
-        cv2.rectangle(self.Outframe, (self.Green.max_x, self.Green.max_y), (self.Green.max_x + self.Green.max_width, self.Green.max_y + self.Green.max_height), (0, 125, 125), 5, cv2.LINE_8)
+        cv2.rectangle(self.Outframe, (self.Red.max_x, self.Red.max_y), (self.Red.max_x + self.Red.max_width, self.Red.max_y + self.Red.max_height), (80, 180, 200), 5, cv2.LINE_8)
+        cv2.rectangle(self.Outframe, (self.Green.max_x, self.Green.max_y), (self.Green.max_x + self.Green.max_width, self.Green.max_y + self.Green.max_height), (0, 150, 200), 5, cv2.LINE_8)
         cv2.rectangle(self.Outframe, (self.Blue.max_x, self.Blue.max_y), (self.Blue.max_x + self.Blue.max_width, self.Blue.max_y + self.Blue.max_height), (255, 255, 255), 5, cv2.LINE_8)
-        #cv2.imshow("ddd", self.Outframe)
     def labeling(self):
+        kernel = np.ones((5,5), np.uint8)
+        self.frame_Red = cv2.morphologyEx(self.frame_Red, cv2.MORPH_OPEN, kernel)
+        self.frame_Green = cv2.morphologyEx(self.frame_Green, cv2.MORPH_OPEN, kernel)
+        self.frame_Blue = cv2.morphologyEx(self.frame_Blue, cv2.MORPH_OPEN, kernel)
+
         frame_Red_lab = cv2.cvtColor(self.frame_Red, cv2.COLOR_RGB2GRAY)
         _, th_Red = cv2.threshold(frame_Red_lab, 1, 255, cv2.THRESH_BINARY)
         retval, labels, stats, centroids = cv2.connectedComponentsWithStats(th_Red, connectivity=8)
@@ -393,6 +376,7 @@ class App(Color_catagory):
                 self.Blue.max_width = stats[i, 2]
                 self.Blue.max_height = stats[i, 3]
                 self.Blue.max_area = stats[i, 4]
+
 
     def ShowColormap(self):
         colormap = cv2.imread("colormap.jpg", cv2.IMREAD_ANYCOLOR)
