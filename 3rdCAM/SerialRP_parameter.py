@@ -45,8 +45,6 @@ class MyAPP(tkinter.Tk):
         self.window.resizable(True, True)
 
 
-
-
         #self.t_label = tkinter.IntVar(self, 0)
         # self.label = tkinter.Label(self, textvariable=self.t_label)
         # self.label.pack()

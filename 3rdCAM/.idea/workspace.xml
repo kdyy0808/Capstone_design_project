@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1573dae6-4373-4106-b8f1-4188df5a1a66" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/HSV_parameters.txt" beforeDir="false" afterPath="$PROJECT_DIR$/HSV_parameters.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Opencv+Tkinter_working0505.py" beforeDir="false" afterPath="$PROJECT_DIR$/Opencv+Tkinter_working0505.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SerialRP_parameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/SerialRP_parameter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SerialRP_parameter_success.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,10 +16,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SerialRP_parameter_success.py">
+        <entry file="file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="209">
+              <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -26,13 +28,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Opencv+Tkinter_working0505.py">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/threading.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="459" column="54" lean-forward="true" selection-start-line="459" selection-start-column="54" selection-end-line="459" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="166">
+              <caret line="913" selection-start-line="913" selection-end-line="913" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter333.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="166" column="67" selection-start-line="166" selection-start-column="67" selection-end-line="166" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -44,6 +61,8 @@
       <find>listbox2</find>
       <find>mailbox</find>
       <find>tk</find>
+      <find>ActiveRGB2GRAY</find>
+      <find>MyVideoCapture</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -57,10 +76,12 @@
         <option value="$PROJECT_DIR$/Serial_communicationReceive.py" />
         <option value="$PROJECT_DIR$/Threading_test2.py" />
         <option value="$PROJECT_DIR$/Serial_communicationSend.py" />
-        <option value="$PROJECT_DIR$/SerialRP_parameter.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/Opencv+Tkinter_working0505.py" />
         <option value="$PROJECT_DIR$/SerialRP_parameter_success.py" />
+        <option value="$PROJECT_DIR$/Opencv+Tkinter_working0505.py" />
+        <option value="$PROJECT_DIR$/SerialRP_parameter+CAM.py" />
+        <option value="$PROJECT_DIR$/SerialRP_parameter.py" />
+        <option value="$PROJECT_DIR$/SerialRP_parameter+CAM2.py" />
       </list>
     </option>
   </component>
@@ -74,9 +95,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1927" />
+    <option name="width" value="1927" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -85,7 +106,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,6 +117,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -118,8 +139,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.SerialRP_parameter_success">
-    <configuration name="Opencv+Tkinter_working0505" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.SerialRP_parameter+CAM2">
+    <configuration name="SerialRP_parameter (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="3rdCAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -127,12 +148,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Opencv+Tkinter_working0505.py" />
+      <option name="SCRIPT_NAME" value="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,7 +184,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="SerialRP_parameter_success" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="SerialRP_parameter333" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="3rdCAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -171,12 +192,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SerialRP_parameter_success.py" />
+      <option name="SCRIPT_NAME" value="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter333.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,7 +206,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Threading_test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="SerialRP_parameter+CAM" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="3rdCAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -198,7 +219,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Threading_test2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SerialRP_parameter+CAM.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -207,7 +228,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="SerialRP_parameter+CAM2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="3rdCAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -220,7 +241,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SerialRP_parameter+CAM2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -231,11 +252,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.SerialRP_parameter_success" />
-        <item itemvalue="Python.Opencv+Tkinter_working0505" />
-        <item itemvalue="Python.test" />
+        <item itemvalue="Python.SerialRP_parameter+CAM2" />
+        <item itemvalue="Python.SerialRP_parameter333" />
+        <item itemvalue="Python.SerialRP_parameter (1)" />
         <item itemvalue="Python.SerialRP_parameter" />
-        <item itemvalue="Python.Threading_test2" />
+        <item itemvalue="Python.SerialRP_parameter+CAM" />
       </list>
     </recent_temporary>
   </component>
@@ -252,23 +273,28 @@
       <workItem from="1557302649910" duration="16826000" />
       <workItem from="1557351933257" duration="2188000" />
       <workItem from="1557354257375" duration="12847000" />
+      <workItem from="1557765581796" duration="137000" />
+      <workItem from="1557839698385" duration="8615000" />
+      <workItem from="1557857852010" duration="5605000" />
+      <workItem from="1557881307454" duration="187000" />
+      <workItem from="1557881640300" duration="776000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31861000" />
+    <option name="totallyTimeSpent" value="47181000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1927" y="0" width="1927" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14552239" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.15425816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32968238" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39868566" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -276,14 +302,37 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.329718" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15425816" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32968238" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39868566" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.329718" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.329718" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -301,6 +350,11 @@
           <line>29</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -308,11 +362,15 @@
     <SUITE FILE_PATH="coverage/3rdCAM$Threading_test2.coverage" NAME="Threading_test2 Coverage Results" MODIFIED="1557335269174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$test.coverage" NAME="test Coverage Results" MODIFIED="1557354275646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$RP_parameter_UI.coverage" NAME="RP_parameter_UI Coverage Results" MODIFIED="1557303495597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter__1_.coverage" NAME="SerialRP_parameter (1) Coverage Results" MODIFIED="1557881357073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508" />
     <SUITE FILE_PATH="coverage/3rdCAM$Threading_test.coverage" NAME="Threading_test Coverage Results" MODIFIED="1557324713597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter.coverage" NAME="SerialRP_parameter Coverage Results" MODIFIED="1557352013411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_success.coverage" NAME="SerialRP_parameter_success Coverage Results" MODIFIED="1557477594042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter.coverage" NAME="SerialRP_parameter Coverage Results" MODIFIED="1557881059572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_success.coverage" NAME="SerialRP_parameter_success Coverage Results" MODIFIED="1557858261696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$Serial_communicationReceive.coverage" NAME="Serial_communicationReceive Coverage Results" MODIFIED="1557309869886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_CAM.coverage" NAME="SerialRP_parameter+CAM Coverage Results" MODIFIED="1557859587994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter333.coverage" NAME="SerialRP_parameter333 Coverage Results" MODIFIED="1557881682687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508" />
     <SUITE FILE_PATH="coverage/3rdCAM$Opencv_Tkinter_working0505.coverage" NAME="Opencv+Tkinter_working0505 Coverage Results" MODIFIED="1557424604963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_CAM2.coverage" NAME="SerialRP_parameter+CAM2 Coverage Results" MODIFIED="1557882303883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Serial_communicationReceive.py">
@@ -359,16 +417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SerialRP_parameter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="134" column="33" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Threading_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -378,18 +426,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Opencv+Tkinter_working0505.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="459" column="54" lean-forward="true" selection-start-line="459" selection-start-column="54" selection-end-line="459" selection-end-column="54" />
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SerialRP_parameter_success.py" />
+    <entry file="file://$PROJECT_DIR$/SerialRP_parameter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SerialRP_parameter_success.py">
+    <entry file="file://$PROJECT_DIR$/SerialRP_parameter+CAM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="597">
+          <caret line="573" column="60" selection-start-line="573" selection-start-column="60" selection-end-line="573" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter333.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="166" column="67" selection-start-line="166" selection-start-column="67" selection-end-line="166" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="913" selection-start-line="913" selection-end-line="913" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
