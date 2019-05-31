@@ -49,6 +49,10 @@ https://www.notion.so/Reinforcement-Learning-1-DQN-7315e22bc7ae4c5db4efad6f39610
 
 https://spinningup.openai.com/en/latest/spinningup/keypapers.html?fbclid=IwAR1GnSgiD_rnimwLrXc7JcAKW1bTBLG11YkrtKjgLIgn4cz5WtzZLRokSZY
 
-Inverse RL 
+Inverse RL 정리
 
 https://reinforcement-learning-kr.github.io/2019/01/22/0_lets-do-irl-guide/?fbclid=IwAR3SvQDl9ijKMnr3zMJKfOwkE7sqjQu6Fc1_c4IijCEk4h_DZThBNNNvJgM
+
+Inverse RL 구현
+
+https://github.com/reinforcement-learning-kr/lets-do-irl?fbclid=IwAR23F_HupWTcnebsGB0M8hrBb4c7q_1_3CSp--236Mjrka6EX5Q3emc71SA
