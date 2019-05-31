@@ -40,5 +40,7 @@ https://python.bakyeono.net/
 
 강화학습 
 --------------------
-강화학습 김성훈 교수님 강의 
+강화학습 김성훈 교수님 강의 정리자료
+
+
 https://www.notion.so/Reinforcement-Learning-1-DQN-7315e22bc7ae4c5db4efad6f39610a90
