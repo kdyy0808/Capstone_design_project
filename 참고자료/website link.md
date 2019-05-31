@@ -37,3 +37,8 @@ https://kamang-it.tistory.com/entry/Arduino-Python%EC%9C%BC%EB%A1%9C-UARTSerial%
 파이썬 입문서
 ---------------------
 https://python.bakyeono.net/
+
+강화학습 
+--------------------
+강화학습 김성훈 교수님 강의 
+https://www.notion.so/Reinforcement-Learning-1-DQN-7315e22bc7ae4c5db4efad6f39610a90
