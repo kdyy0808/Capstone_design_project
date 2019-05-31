@@ -44,3 +44,7 @@ https://python.bakyeono.net/
 
 
 https://www.notion.so/Reinforcement-Learning-1-DQN-7315e22bc7ae4c5db4efad6f39610a90
+
+논문 주제별로 분류
+
+https://spinningup.openai.com/en/latest/spinningup/keypapers.html?fbclid=IwAR1GnSgiD_rnimwLrXc7JcAKW1bTBLG11YkrtKjgLIgn4cz5WtzZLRokSZY
