@@ -48,3 +48,7 @@ https://www.notion.so/Reinforcement-Learning-1-DQN-7315e22bc7ae4c5db4efad6f39610
 논문 주제별로 분류
 
 https://spinningup.openai.com/en/latest/spinningup/keypapers.html?fbclid=IwAR1GnSgiD_rnimwLrXc7JcAKW1bTBLG11YkrtKjgLIgn4cz5WtzZLRokSZY
+
+Inverse RL 
+
+https://reinforcement-learning-kr.github.io/2019/01/22/0_lets-do-irl-guide/?fbclid=IwAR3SvQDl9ijKMnr3zMJKfOwkE7sqjQu6Fc1_c4IijCEk4h_DZThBNNNvJgM
