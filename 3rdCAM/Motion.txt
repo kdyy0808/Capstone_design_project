@@ -1,0 +1,23 @@
+/*******************************/
+	 RP PARAMETER      
+/*******************************/
+
+_FastRP_
+
+F_RP_val[0] 160
+F_RP_val[1] 130
+F_RP_val[2] 40
+F_RP_val[3] 58
+F_RP_val[4] 800
+F_RP_val[5] 40
+F_RP_val[6] 20
+F_RP_val[7] 60
+F_RP_val[8] 30
+F_RP_val[9] 30
+F_RP_val[10] 30
+F_RP_val[11] 200
+F_RP_val[12] 0
+F_RP_val[13] 300
+F_RP_val[14] 700
+F_RP_val[15] 0
+F_RP_val[16] 0
