@@ -37,3 +37,22 @@ https://kamang-it.tistory.com/entry/Arduino-Python%EC%9C%BC%EB%A1%9C-UARTSerial%
 파이썬 입문서
 ---------------------
 https://python.bakyeono.net/
+
+강화학습 
+--------------------
+강화학습 김성훈 교수님 강의 정리자료
+
+
+https://www.notion.so/Reinforcement-Learning-1-DQN-7315e22bc7ae4c5db4efad6f39610a90
+
+논문 주제별로 분류
+
+https://spinningup.openai.com/en/latest/spinningup/keypapers.html?fbclid=IwAR1GnSgiD_rnimwLrXc7JcAKW1bTBLG11YkrtKjgLIgn4cz5WtzZLRokSZY
+
+Inverse RL 정리
+
+https://reinforcement-learning-kr.github.io/2019/01/22/0_lets-do-irl-guide/?fbclid=IwAR3SvQDl9ijKMnr3zMJKfOwkE7sqjQu6Fc1_c4IijCEk4h_DZThBNNNvJgM
+
+Inverse RL 구현
+
+https://github.com/reinforcement-learning-kr/lets-do-irl?fbclid=IwAR23F_HupWTcnebsGB0M8hrBb4c7q_1_3CSp--236Mjrka6EX5Q3emc71SA
