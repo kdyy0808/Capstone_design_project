@@ -56,3 +56,7 @@ https://reinforcement-learning-kr.github.io/2019/01/22/0_lets-do-irl-guide/?fbcl
 Inverse RL 구현
 
 https://github.com/reinforcement-learning-kr/lets-do-irl?fbclid=IwAR23F_HupWTcnebsGB0M8hrBb4c7q_1_3CSp--236Mjrka6EX5Q3emc71SA
+
+직선과 점 사이 거리
+---------------------------------------------
+https://gpgstudy.com/forum/viewtopic.php?t=22736
