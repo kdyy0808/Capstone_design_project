@@ -38,8 +38,9 @@ RPD = 300
 RPE = 700
 RPF = 0
 RPG = 0
-
-
+RP_sign_type = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+RP_mapping_min = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+RP_mapping_max = [200, 600, 100, 300, 2000, 30, 0, 600, 200, 200, 200, 200, 200, 200, 200, 200, 200]
 class SerialThread(threading.Thread):
     def __init__(self, queue):
         threading.Thread.__init__(self)
@@ -56,7 +57,7 @@ class SerialThread(threading.Thread):
                 # text = text[1:]
                 btext += text
                 if text.find(';') != -1:
-                    if btext =="":
+                    if btext == "":
                         btext = text
                     # semicolonFlag = True
                     self.queue.put(btext)
@@ -427,6 +428,9 @@ class RPwindow(tkinter.Tk):
 class App(tkinter.Tk):
     btnGrayFlag=0
     RadioFlag =0
+    RP_Change_flag = True
+    RP_Change_count = 10
+    RP_Change_threshold_twisted_value = 5
     Outframe = None
     frame_Red = None
     frame_Green = None
@@ -436,6 +440,9 @@ class App(tkinter.Tk):
     Run_start_y = 0
     Run_start_inclination =0
 
+    Start_Point_mid_x = 0
+    Start_Point_mid_y = 0
+
     Run_end_x = 0
     Run_end_y = 0
     Run_end_inclination =0
@@ -443,10 +450,17 @@ class App(tkinter.Tk):
     RandChoice =0
     delta_value =0
     delta_sign = 1
+    Current_delta_value = 0
     prev_Penalty =0
     current_Peanalty =0
+    Start_flag = False
+    End_flag = True
+    try_count = 0
+    CenterPoints_x = list()
+    CenterPoints_y = list()
+    Distributions = list()
+    line_end_x =0
 
-    try_count =0
 
     def __init__(self,video_source=0):
         tkinter.Tk.__init__(self)
@@ -707,7 +721,6 @@ class App(tkinter.Tk):
         self.txt_Deep = tkinter.Text(frame_Deep_result, width=41, height=20, autoseparators=True, yscrollcommand=self.scrollbar.set)
         btnMotionparameter.place(x=950-160, y=50, width=200, height=30)
 
-
         lbl_1.place(x=960-160, y=110)
         lbl_2.place(x=960-160, y=150)
         lbl_3.place(x=1000-160, y=85)
@@ -787,9 +800,30 @@ class App(tkinter.Tk):
          if ret:
              cv2.imwrite("frame-" + time.strftime("%d-%m-%Y-%H-%M-%S") + ".jpg", cv2.cvtColor(frame, cv2.COLOR_RGB2BGR))
 
+    def getPerpCoord(self, aX, aY, bX, bY, length):
+        vX = bX - aX
+        vY = bY - aY
+        # print(str(vX)+" "+str(vY))
+        if (vX == 0 or vY == 0):
+            return 0, 0, 0, 0
+        mag = math.sqrt(vX * vX + vY * vY)
+        vX = vX / mag
+        vY = vY / mag
+        temp = vX
+        vX = 0 - vY
+        vY = temp
+        cX = bX + vX * length
+        cY = bY + vY * length
+        dX = bX - vX * length
+        dY = bY - vY * length
+        return int(cX), int(cY), int(dX), int(dY)
+
+
     def update(self):
          # Get a frame from the video source
          ret, frame = self.vid.get_frame()
+         # print(self.vid.height)
+         # print(self.vid.width)
 
 
          #self.Outframe
@@ -851,9 +885,38 @@ class App(tkinter.Tk):
         cv2.rectangle(self.Outframe, (self.Red.max_x, self.Red.max_y), (self.Red.max_x + self.Red.max_width, self.Red.max_y + self.Red.max_height), (80, 180, 200), 5, cv2.LINE_8)
         cv2.rectangle(self.Outframe, (self.Green.max_x, self.Green.max_y), (self.Green.max_x + self.Green.max_width, self.Green.max_y + self.Green.max_height), (0, 150, 200), 5, cv2.LINE_8)
         cv2.rectangle(self.Outframe, (self.Blue.max_x, self.Blue.max_y), (self.Blue.max_x + self.Blue.max_width, self.Blue.max_y + self.Blue.max_height), (255, 255, 255), 5, cv2.LINE_8)
+
+
         if not ((self.Run_end_x == 0 and self.Run_end_y == 0 ) or (self.Run_start_x == 0 and self.Run_start_y == 0 )):
             cv2.line(self.Outframe, (self.Run_start_x, self.Run_start_y), (self.Run_end_x, self.Run_end_y), (80, 180, 200), 10)
 
+        if self.Start_flag:
+            mid_x = int((self.Red.max_x + self.Red.max_width / 2) * 0.5 + (self.Blue.max_x + self.Blue.max_width / 2) * 0.5)
+            mid_y = int((self.Red.max_y + self.Red.max_height / 2) * 0.5 + (self.Blue.max_y + self.Blue.max_height / 2) * 0.5)
+
+            self.CenterPoints_x.append(mid_x)
+            self.CenterPoints_y.append(mid_y)
+
+
+            cv2.line(self.Outframe, (self.Run_start_x, self.Run_start_y), (self.Run_start_x + int(500*math.cos(self.Run_start_inclination + math.pi/2)), self.Run_start_y - int(500*math.sin(self.Run_start_inclination + math.pi/2))),(80,180,200), 5, cv2.LINE_8)#수직선 그리기
+
+            #self.Run_start_inclination
+
+            print(self.calcDistanceLineNdot(self.Run_start_x,self.Run_start_y,self.Run_start_x + int(500*math.cos(self.Run_start_inclination + math.pi/2)), self.Run_start_y - int(500*math.sin(self.Run_start_inclination + math.pi/2)),mid_x,mid_y))
+            self.Distributions.append(self.calcDistanceLineNdot(self.Run_start_x,self.Run_start_y,self.Run_start_x + int(500*math.cos(self.Run_start_inclination + math.pi/2)), self.Run_start_y - int(500*math.sin(self.Run_start_inclination + math.pi/2)),mid_x,mid_y))
+            for i in range(len(self.CenterPoints_x)):
+                cv2.circle(self.Outframe, (self.CenterPoints_x[i], self.CenterPoints_y[i]), 3, (0, 255, 255), thickness=-1)
+
+
+        elif self.End_flag:
+            self.CenterPoints_x.clear()
+            self.CenterPoints_y.clear()
+            self.Distributions.clear()
+    def calcDistanceLineNdot(self,x1,y1,x2,y2,x,y):
+        if x1-x2 == 0:
+            return abs(x1-x)
+        a = float((y1 - y2)/(x1- x2))
+        return abs(a*(x - x1) - y + y1) / math.sqrt(a*a + 1)
     def labeling(self):
         kernel = np.ones((5,5), np.uint8)
         self.frame_Red = cv2.morphologyEx(self.frame_Red, cv2.MORPH_OPEN, kernel)
@@ -932,12 +995,13 @@ class App(tkinter.Tk):
         global Run_start_x, Run_start_y, Run_end_x, Run_end_y, Run_start_inclination,RP0,RP1,RP2,RP3,RP4,RP5,RP6,RP7,RP8,RP9,RPA,RPB,RPC,RPD,RPE,RPF,RPG
         self.Run_start_x = int((self.Red.max_x + self.Red.max_width / 2)*0.5 + (self.Blue.max_x + self.Blue.max_width / 2)*0.5)
         self.Run_start_y = int((self.Red.max_y + self.Red.max_height / 2)*0.5 + (self.Blue.max_y + self.Blue.max_height / 2)*0.5)
-        self.Run_start_inclination = math.atan((self.Red.max_y - self.Blue.max_y) / (self.Red.max_x - self.Blue.max_x))
+        self.Run_start_inclination = math.atan(abs(self.Red.max_y - self.Blue.max_y) / abs(self.Red.max_x - self.Blue.max_x))
 
         self.Run_end_x=0
         self.Run_end_y=0
         self.try_count += 1
         print("=============")
+        print("기울기"+ str(self.Run_start_inclination*180/math.pi))
         print(self.Run_start_x)
         print(self.Run_start_y)
         RP_list = re.findall("\d+", self.txtRVvalue.get(0.0, tkinter.END))
@@ -946,52 +1010,192 @@ class App(tkinter.Tk):
         RP_Step_value = int(RPStep_list[0])
 
         if self.try_count!=1:
-            if self.try_count==2:
-                #self.RandChoice = random.randint(0, 10)  # Choice 선택
-                self.RandChoice = 0
+            if self.RP_Change_flag == True:
+                self.RandChoice = random.randint(0, 4)  # Choice 선택 원래 17
+                self.RP_Change_flag = False
+                if self.RandChoice == 2:
+                    self.RandChoice = 3
+                elif self.RandChoice == 3:
+                    self.RandChoice = 7
+                elif self.RandChoice == 4:
+                    self.RandChoice = 11
+                self.RP_Change_count = 10
+                self.Current_delta_value = (RP_mapping_max[self.RandChoice]-RP_mapping_min[self.RandChoice])/2
+                self.txt_Deep.insert(tkinter.END, "=========================\n")
+            else:
+                self.Current_delta_value /= 2
+            Rand_value=random.random()
 
-            Rand_value=random.randint(1,6)
-            self.delta_value = Rand_value*10
+            print(self.RandChoice)
+            self.delta_value = round(self.Current_delta_value)
             sending_message = ""
-            if(self.RandChoice==0):
-                RP0 += self.delta_sign * self.delta_value
+            if self.RandChoice==0:
+                RP0 += RP_sign_type[0] * self.delta_value
+                if RP0 > RP_mapping_max[0]:
+                    RP0=RP_mapping_max[0]
+                elif RP0 < RP_mapping_min[0]:
+                    RP0 = RP_mapping_min[0]
                # s.write(("RP" + str(self.RandChoice) + "," + str(RP0) + ";").encode())
                 sending_message= ("RP0," + str(RP0) + ";")
-            elif (self.RandChoice == 1):
-                RP1 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 1:
+                RP1 += RP_sign_type[1] * self.delta_value
+                if RP1 > RP_mapping_max[1]:
+                    RP1=RP_mapping_max[1]
+                elif RP1 < RP_mapping_min[1]:
+                    RP1 = RP_mapping_min[1]
                 sending_message= ("RP1," + str(RP1) + ";")
-            elif (self.RandChoice == 2):
-                RP2 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 2:
+                RP2 += RP_sign_type[2] * self.delta_value
+                if RP2 > RP_mapping_max[2]:
+                    RP2=RP_mapping_max[2]
+                elif RP2 < RP_mapping_min[2]:
+                    RP2 = RP_mapping_min[2]
                 sending_message= ("RP2," + str(RP2) + ";")
-            elif (self.RandChoice == 3):
-                RP3 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 3:
+                RP3 += RP_sign_type[3] * self.delta_value
+                if RP3 > RP_mapping_max[3]:
+                    RP3=RP_mapping_max[3]
+                elif RP3 < RP_mapping_min[3]:
+                    RP3 = RP_mapping_min[3]
                 sending_message= ("RP3," + str(RP3) + ";")
-            elif (self.RandChoice == 4):
-                RP4 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 4:
+                RP4 += RP_sign_type[4] * self.delta_value
+                if RP4 > RP_mapping_max[4]:
+                    RP4=RP_mapping_max[4]
+                elif RP4 < RP_mapping_min[4]:
+                    RP4 = RP_mapping_min[4]
                 sending_message= ("RP4," + str(RP4) + ";")
-            elif (self.RandChoice == 5):
-                RP5 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 5:
+                RP5 += RP_sign_type[5] * self.delta_value
+                if RP5 > RP_mapping_max[5]:
+                    RP5 = RP_mapping_max[5]
+                elif RP5 < RP_mapping_min[5]:
+                    RP5 = RP_mapping_min[5]
                 sending_message= ("RP5," + str(RP5) + ";")
-            elif (self.RandChoice == 6):
-                RP6 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 6:
+                RP6 += RP_sign_type[6] * self.delta_value
+                if RP6 > RP_mapping_max[6]:
+                    RP6=RP_mapping_max[6]
+                elif RP6 < RP_mapping_min[6]:
+                    RP6 = RP_mapping_min[6]
                 sending_message= ("RP6," + str(RP6) + ";")
-            elif (self.RandChoice == 7):
-                RP7 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 7:
+                RP7 += RP_sign_type[7] * self.delta_value
+                if RP7 > RP_mapping_max[7]:
+                    RP7=RP_mapping_max[7]
+                elif RP7 < RP_mapping_min[7]:
+                    RP7 = RP_mapping_min[7]
                 sending_message= ("RP7," + str(RP7) + ";")
-            elif (self.RandChoice == 8):
-                RP8 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 8:
+                RP8 += RP_sign_type[8] * self.delta_value
+                if RP8 > RP_mapping_max[8]:
+                    RP8=RP_mapping_max[8]
+                elif RP8 < RP_mapping_min[8]:
+                    RP8 = RP_mapping_min[8]
                 sending_message= ("RP8," + str(RP8) + ";")
-            elif (self.RandChoice == 9):
-                RP9 += self.delta_sign * self.delta_value
+            elif self.RandChoice == 9:
+                RP9 += RP_sign_type[9] * self.delta_value
+                if RP9 > RP_mapping_max[9]:
+                    RP9=RP_mapping_max[9]
+                elif RP9 < RP_mapping_min[9]:
+                    RP9 = RP_mapping_min[9]
                 sending_message= ("RP9," + str(RP9) + ";")
+            elif self.RandChoice == 10:
+                RPA += RP_sign_type[10] * self.delta_value
+                if RPA > RP_mapping_max[10]:
+                    RPA=RP_mapping_max[10]
+                elif RPA < RP_mapping_min[10]:
+                    RPA = RP_mapping_min[10]
+                sending_message= ("RPA," + str(RPA) + ";")
+            elif self.RandChoice == 11:
+                RPB += RP_sign_type[11] * self.delta_value
+                if RPB > RP_mapping_max[11]:
+                    RPB=RP_mapping_max[11]
+                elif RPB < RP_mapping_min[11]:
+                    RPB = RP_mapping_min[11]
+                sending_message= ("RPB," + str(RPB) + ";")
+            elif self.RandChoice == 12:
+                RPC += RP_sign_type[12] * self.delta_value
+                if RPC > RP_mapping_max[12]:
+                    RPC=RP_mapping_max[12]
+                elif RPC < RP_mapping_min[12]:
+                    RPC = RP_mapping_min[12]
+                sending_message= ("RPC," + str(RPC) + ";")
+            elif self.RandChoice == 13:
+                RPD += RP_sign_type[13] * self.delta_value
+                if RPD > RP_mapping_max[13]:
+                    RPD = RP_mapping_max[13]
+                elif RPD < RP_mapping_min[13]:
+                    RPD = RP_mapping_min[13]
+                sending_message = ("RPD," + str(RPD) + ";")
+            elif self.RandChoice == 14:
+                RPE += RP_sign_type[14] * self.delta_value
+                if RPE > RP_mapping_max[14]:
+                    RPE=RP_mapping_max[14]
+                elif RPE < RP_mapping_min[14]:
+                    RPE = RP_mapping_min[14]
+                sending_message= ("RPE," + str(RPE) + ";")
+            elif self.RandChoice == 15:
+                RPF += RP_sign_type[15] * self.delta_value
+                if RPF > RP_mapping_max[15]:
+                    RPF=RP_mapping_max[15]
+                elif RPF < RP_mapping_min[15]:
+                    RPF = RP_mapping_min[15]
+                sending_message= ("RPF," + str(RPF) + ";")
+            elif self.RandChoice == 16:
+                RPG += RP_sign_type[16] * self.delta_value
+                if RPG > RP_mapping_max[16]:
+                    RPG=RP_mapping_max[16]
+                elif RPG < RP_mapping_min[16]:
+                    RPG = RP_mapping_min[16]
+                sending_message= ("RPG," + str(RPG) + ";")
 
             s.write(sending_message.encode())
             time.sleep(0.1)
-            self.txt_Deep.insert(tkinter.CURRENT, "변경 RP"+str(self.RandChoice)+"\n변경량 : "+str(self.delta_value)+"\n" )
+            self.txt_Deep.insert(tkinter.END, "변경 RP"+str(self.RandChoice)+"\n변경량 : "+str(self.delta_value)+"\n")
+
+            if self.RandChoice == 0:
+                self.txt_Deep.insert(tkinter.END, "RP0:" + str(RP0) + "\n")
+            elif self.RandChoice == 1:
+                self.txt_Deep.insert(tkinter.END, "RP1:" + str(RP1) + "\n")
+            elif self.RandChoice == 2:
+                self.txt_Deep.insert(tkinter.END, "RP2:" + str(RP2) + "\n")
+            elif self.RandChoice == 3:
+                self.txt_Deep.insert(tkinter.END, "RP3:" + str(RP3) + "\n")
+            elif self.RandChoice == 4:
+                self.txt_Deep.insert(tkinter.END, "RP4:" + str(RP4) + "\n")
+            elif self.RandChoice == 5:
+                self.txt_Deep.insert(tkinter.END, "RP5:" + str(RP5) + "\n")
+            elif self.RandChoice == 6:
+                self.txt_Deep.insert(tkinter.END, "RP6:" + str(RP6) + "\n")
+            elif self.RandChoice == 7:
+                self.txt_Deep.insert(tkinter.END, "RP7:" + str(RP7) + "\n")
+            elif self.RandChoice == 8:
+                self.txt_Deep.insert(tkinter.END, "RP8:" + str(RP8) + "\n")
+            elif self.RandChoice == 9:
+                self.txt_Deep.insert(tkinter.END, "RP9:" + str(RP9) + "\n")
+            elif self.RandChoice == 10:
+                self.txt_Deep.insert(tkinter.END, "RPA:" + str(RPA) + "\n")
+            elif self.RandChoice == 11:
+                self.txt_Deep.insert(tkinter.END, "RPB:" + str(RPB) + "\n")
+            elif self.RandChoice == 12:
+                self.txt_Deep.insert(tkinter.END, "RPC:" + str(RPC) + "\n")
+            elif self.RandChoice == 13:
+                self.txt_Deep.insert(tkinter.END, "RPD:" + str(RPD) + "\n")
+            elif self.RandChoice == 14:
+                self.txt_Deep.insert(tkinter.END, "RPE:" + str(RPE) + "\n")
+            elif self.RandChoice == 15:
+                self.txt_Deep.insert(tkinter.END, "RPF:" + str(RPF) + "\n")
+            elif self.RandChoice == 16:
+                self.txt_Deep.insert(tkinter.END, "RPG:" + str(RPG) + "\n")
+
+            self.txt_Deep.see(tkinter.END)
+
             self.prev_Penalty = self.current_Peanalty
-
+            self.RP_Change_count -= 1
+        self.Start_flag = True
+        self.End_flag = False
         s.write(("RV" + str(RP_value) + "," + str(RP_Step_value) + ";").encode())
-
 
     def End_RP_move(self):
         global Run_end_x, Run_end_y, Run_end_inclination
@@ -1003,7 +1207,7 @@ class App(tkinter.Tk):
         print(self.Run_end_x)
         print(self.Run_end_y)
         # twisted_value = (self.Run_start_y - self.Run_end_y) / (self.Run_start_x - self.Run_end_x)
-        twisted_value = abs(self.Run_end_inclination - self.Run_start_inclination)
+        twisted_value = abs(self.Run_end_inclination - self.Run_start_inclination)*180/math.pi
         X_axis_twisted_value = abs(self.Run_end_x - self.Run_start_x)
 
         print(twisted_value)
@@ -1012,21 +1216,38 @@ class App(tkinter.Tk):
         self.txtX_axis_twisted_value.delete(0.0,tkinter.END)
         self.txtX_axis_twisted_value.insert(0.0, str(X_axis_twisted_value))
 
-        self.current_Peanalty = round(5 * twisted_value + X_axis_twisted_value,4)
 
 
+        AvgMid_points_x = sum(self.CenterPoints_x, 0.0) / len(self.CenterPoints_x)
+        AvgMid_points_y = sum(self.CenterPoints_y, 0.0) / len(self.CenterPoints_y)
+        total_distribution = 0
+        for i in range(len(self.Distributions)):
+            #self.CenterPoints_x[i] = abs(self.CenterPoints_x[i] - AvgMid_points_x)
+            #self.CenterPoints_y[i] = abs(self.CenterPoints_y[i] - AvgMid_points_y)
+            #total_distribution +=self.CenterPoints_x[i] + self.CenterPoints_y[i]
+            total_distribution+= self.Distributions[i]
+        print("편차는 : "+ str(total_distribution/len(self.Distributions)))
+        avg_distribution = round(total_distribution/len(self.Distributions),4)
+        self.Start_flag = False
+        self.End_flag = True
+        #X_axis_twisted_value일단 생략
+        self.current_Peanalty = round(5 * twisted_value  + avg_distribution, 4)
+        print("틀어진 정도(x20):"+ str(twisted_value) + "도")
+        print("표준편차 :"+str(avg_distribution))
         print("현재 패널티:" + str(self.current_Peanalty))
-        self.txt_Deep.insert(tkinter.CURRENT, "현재 패널티:" + str(self.current_Peanalty) + "\n")
+        self.txt_Deep.insert(tkinter.END, "현재 패널티:" + str(self.current_Peanalty) + "\n")
         if self.try_count != 1:
-            self.txt_Deep.insert(tkinter.CURRENT, "이전 패널티:" + str(self.prev_Penalty) + "\n")
+            self.txt_Deep.insert(tkinter.END, "이전 패널티:" + str(self.prev_Penalty) + "\n")
             if self.current_Peanalty> self.prev_Penalty:
-                self.delta_sign *= -1
+                global RP_sign_type
+                #self.delta_sign *= -1
+                RP_sign_type[self.RandChoice] *= -1
+        self.txt_Deep.insert(tkinter.END, "-------------------------\n")
+        self.txt_Deep.see(tkinter.END)
 
-
-
-
-
-
+        if self.RP_Change_count == 0 or self.current_Peanalty < self.RP_Change_threshold_twisted_value or self.delta_value < 4:
+            self.RP_Change_flag = True
+            self.txt_Deep.insert(tkinter.END, "**********************\n")
 
     def saveParameter(self):
         file = open('./HSV_parameters.txt', 'w')
@@ -1044,6 +1265,7 @@ class App(tkinter.Tk):
         file.write("Blue V_min : %d \t Blue V_max : %d\n"%(self.Blue.V_min, self.Blue.V_max))
         file.write("============================\n")
         file.close()
+
     def loadParameter(self):
         self.HSVdatafile()
 
@@ -1075,17 +1297,20 @@ class App(tkinter.Tk):
         value6 = "V_max :" + str(self.thisColor.V_max)
         self.L6.config(text=value6)
 
+
 class MyVideoCapture:
      def __init__(self, video_source=0):
          # Open the video source
          self.vid = cv2.VideoCapture(video_source)
          if not self.vid.isOpened():
              raise ValueError("Unable to open video source", video_source)
-
+         #self.vid.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
+         #self.vid.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
          # Get video source width and height
          self.width = self.vid.get(cv2.CAP_PROP_FRAME_WIDTH)
          self.height = self.vid.get(cv2.CAP_PROP_FRAME_HEIGHT)
-
+         self.vid.set(cv2.CAP_PROP_AUTOFOCUS, False)
+         self.vid.set(cv2.CAP_PROP_SETTINGS, True)
      def get_frame(self):
 
          if self.vid.isOpened():
