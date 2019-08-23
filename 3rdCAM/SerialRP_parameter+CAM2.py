@@ -39,8 +39,11 @@ RPE = 700
 RPF = 0
 RPG = 0
 RP_sign_type = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-RP_mapping_min = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-RP_mapping_max = [200, 600, 100, 300, 2000, 30, 0, 600, 200, 200, 200, 200, 200, 200, 200, 200, 200]
+RP_ischanged = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+RP_mapping_min = [120,  80,     30,     40,     100,    0,  -10,    0,      0,      0,          -10,        0,      0,      150,      100,      0,      0]
+RP_mapping_max = [230,  200,    70,     150,    4000,   60,  40,    1000,   300,    100,        50,         400,    50,     500,      1500,    200,    500]
+
+RP_Rand_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 class SerialThread(threading.Thread):
     def __init__(self, queue):
         threading.Thread.__init__(self)
@@ -53,13 +56,10 @@ class SerialThread(threading.Thread):
                 text = s.readline(s.inWaiting())
                 print(text)
                 text=text.decode()
-                # text = str(text)
-                # text = text[1:]
                 btext += text
                 if text.find(';') != -1:
                     if btext == "":
                         btext = text
-                    # semicolonFlag = True
                     self.queue.put(btext)
                     receivedCount += 1
                     btext=""
@@ -82,7 +82,7 @@ class RPwindow(tkinter.Tk):
     def __init__(self):
         tkinter.Tk.__init__(self)
         self.title("RP_Parameter")
-        self.geometry("900x400+100+100")
+        self.geometry("1100x400+100+100")
         self.btnRpload = tkinter.Button(self, text="RP Load", width=10, command=self.LoadRP_parameter)
         self.btnRpload.place(x=50, y=370)
         self.btnRpapply = tkinter.Button(self, text="RP apply", width=10, command=self.ApllyRP_parameter)
@@ -144,41 +144,41 @@ class RPwindow(tkinter.Tk):
         self.LRPEs = tkinter.Label(self, text="회전보행을 할 때 회전을 원할하게 하기 위하여 팔을 앞뒤로 흔드는데, 팔을 앞뒤로 흔드는 각의 걸음당 회전각(RR명령어로 설정)에대한 비율",  height=1)
         self.LRPFs = tkinter.Label(self, text="측면보행을 할 때 뻗는 다리의 발바닥을 바깥쪽으로 약간 들기 위한 각의 측면 이동을 위한 다리roll 각에 대한 비율",  height=1)
         self.LRPGs = tkinter.Label(self, text="측면 보행을 할때 뻗는 다리의 발바닥을 바깥쪽으로 약간 드는데, 착지후에 원위치로 오게 하는 비율임",  height=1)
-        self.LRP0s.place(x=100, y=17)
-        self.LRP1s.place(x=100, y=37)
-        self.LRP2s.place(x=100, y=57)
-        self.LRP3s.place(x=100, y=77)
-        self.LRP4s.place(x=100, y=97)
-        self.LRP5s.place(x=100, y=117)
-        self.LRP6s.place(x=100, y=137)
-        self.LRP7s.place(x=100, y=157)
-        self.LRP8s.place(x=100, y=177)
-        self.LRP9s.place(x=100, y=197)
-        self.LRPAs.place(x=100, y=217)
-        self.LRPBs.place(x=100, y=237)
-        self.LRPCs.place(x=100, y=257)
-        self.LRPDs.place(x=100, y=277)
-        self.LRPEs.place(x=100, y=297)
-        self.LRPFs.place(x=100, y=317)
-        self.LRPGs.place(x=100, y=337)
+        self.LRP0s.place(x=160, y=17)
+        self.LRP1s.place(x=160, y=37)
+        self.LRP2s.place(x=160, y=57)
+        self.LRP3s.place(x=160, y=77)
+        self.LRP4s.place(x=160, y=97)
+        self.LRP5s.place(x=160, y=117)
+        self.LRP6s.place(x=160, y=137)
+        self.LRP7s.place(x=160, y=157)
+        self.LRP8s.place(x=160, y=177)
+        self.LRP9s.place(x=160, y=197)
+        self.LRPAs.place(x=160, y=217)
+        self.LRPBs.place(x=160, y=237)
+        self.LRPCs.place(x=160, y=257)
+        self.LRPDs.place(x=160, y=277)
+        self.LRPEs.place(x=160, y=297)
+        self.LRPFs.place(x=160, y=317)
+        self.LRPGs.place(x=160, y=337)
 
-        self.txtRP0value = tkinter.Text(self, width=6, height=1)
-        self.txtRP1value = tkinter.Text(self, width=6, height=1)
-        self.txtRP2value = tkinter.Text(self, width=6, height=1)
-        self.txtRP3value = tkinter.Text(self, width=6, height=1)
-        self.txtRP4value = tkinter.Text(self, width=6, height=1)
-        self.txtRP5value = tkinter.Text(self, width=6, height=1)
-        self.txtRP6value = tkinter.Text(self, width=6, height=1)
-        self.txtRP7value = tkinter.Text(self, width=6, height=1)
-        self.txtRP8value = tkinter.Text(self, width=6, height=1)
-        self.txtRP9value = tkinter.Text(self, width=6, height=1)
-        self.txtRPAvalue = tkinter.Text(self, width=6, height=1)
-        self.txtRPBvalue = tkinter.Text(self, width=6, height=1)
-        self.txtRPCvalue = tkinter.Text(self, width=6, height=1)
-        self.txtRPDvalue = tkinter.Text(self, width=6, height=1)
-        self.txtRPEvalue = tkinter.Text(self, width=6, height=1)
-        self.txtRPFvalue = tkinter.Text(self, width=6, height=1)
-        self.txtRPGvalue = tkinter.Text(self, width=6, height=1)
+        self.txtRP0value = tkinter.Text(self, width=4, height=1)
+        self.txtRP1value = tkinter.Text(self, width=4, height=1)
+        self.txtRP2value = tkinter.Text(self, width=4, height=1)
+        self.txtRP3value = tkinter.Text(self, width=4, height=1)
+        self.txtRP4value = tkinter.Text(self, width=4, height=1)
+        self.txtRP5value = tkinter.Text(self, width=4, height=1)
+        self.txtRP6value = tkinter.Text(self, width=4, height=1)
+        self.txtRP7value = tkinter.Text(self, width=4, height=1)
+        self.txtRP8value = tkinter.Text(self, width=4, height=1)
+        self.txtRP9value = tkinter.Text(self, width=4, height=1)
+        self.txtRPAvalue = tkinter.Text(self, width=4, height=1)
+        self.txtRPBvalue = tkinter.Text(self, width=4, height=1)
+        self.txtRPCvalue = tkinter.Text(self, width=4, height=1)
+        self.txtRPDvalue = tkinter.Text(self, width=4, height=1)
+        self.txtRPEvalue = tkinter.Text(self, width=4, height=1)
+        self.txtRPFvalue = tkinter.Text(self, width=4, height=1)
+        self.txtRPGvalue = tkinter.Text(self, width=4, height=1)
 
         self.txtRP0value.insert(0.0, str(RP0))
         self.txtRP1value.insert(0.0, str(RP1))
@@ -215,6 +215,106 @@ class RPwindow(tkinter.Tk):
         self.txtRPEvalue.place(x=50, y=300)
         self.txtRPFvalue.place(x=50, y=320)
         self.txtRPGvalue.place(x=50, y=340)
+
+        def checked():
+            for i in range(0,17):
+                global RP_Rand_checked
+                if i==0:
+                    RP_Rand_checked[i] = CheckVariety_0.get()
+                elif i==1:
+                    RP_Rand_checked[i] = CheckVariety_1.get()
+                elif i==2:
+                    RP_Rand_checked[i] = CheckVariety_2.get()
+                elif i==3:
+                    RP_Rand_checked[i] = CheckVariety_3.get()
+                elif i==4:
+                    RP_Rand_checked[i] = CheckVariety_4.get()
+                elif i==5:
+                    RP_Rand_checked[i] = CheckVariety_5.get()
+                elif i==6:
+                    RP_Rand_checked[i] = CheckVariety_6.get()
+                elif i==7:
+                    RP_Rand_checked[i] = CheckVariety_7.get()
+                elif i==8:
+                    RP_Rand_checked[i] = CheckVariety_8.get()
+                elif i==9:
+                    RP_Rand_checked[i] = CheckVariety_9.get()
+                elif i==10:
+                    RP_Rand_checked[i] = CheckVariety_A.get()
+                elif i==11:
+                    RP_Rand_checked[i] = CheckVariety_B.get()
+                elif i==12:
+                    RP_Rand_checked[i] = CheckVariety_C.get()
+                elif i==13:
+                    RP_Rand_checked[i] = CheckVariety_D.get()
+                elif i==14:
+                    RP_Rand_checked[i] = CheckVariety_E.get()
+                elif i==15:
+                    RP_Rand_checked[i] = CheckVariety_F.get()
+                elif i==16:
+                    RP_Rand_checked[i] = CheckVariety_G.get()
+                print(RP_Rand_checked[i])
+
+        CheckVariety_0 = tkinter.IntVar()
+        CheckVariety_1 = tkinter.IntVar()
+        CheckVariety_2 = tkinter.IntVar()
+        CheckVariety_3 = tkinter.IntVar()
+        CheckVariety_4 = tkinter.IntVar()
+        CheckVariety_5 = tkinter.IntVar()
+        CheckVariety_6 = tkinter.IntVar()
+        CheckVariety_7 = tkinter.IntVar()
+        CheckVariety_8 = tkinter.IntVar()
+        CheckVariety_9 = tkinter.IntVar()
+        CheckVariety_A = tkinter.IntVar()
+        CheckVariety_B = tkinter.IntVar()
+        CheckVariety_C = tkinter.IntVar()
+        CheckVariety_D = tkinter.IntVar()
+        CheckVariety_E = tkinter.IntVar()
+        CheckVariety_F = tkinter.IntVar()
+        CheckVariety_G = tkinter.IntVar()
+
+
+        self.RP0_checked = tkinter.Checkbutton(self, variable=CheckVariety_0, command=checked)
+        self.RP1_checked = tkinter.Checkbutton(self, variable=CheckVariety_1, command=checked)
+        self.RP2_checked = tkinter.Checkbutton(self, variable=CheckVariety_2, command=checked)
+        self.RP3_checked = tkinter.Checkbutton(self, variable=CheckVariety_3, command=checked)
+        self.RP4_checked = tkinter.Checkbutton(self, variable=CheckVariety_4, command=checked)
+        self.RP5_checked = tkinter.Checkbutton(self, variable=CheckVariety_5, command=checked)
+        self.RP6_checked = tkinter.Checkbutton(self, variable=CheckVariety_6, command=checked)
+        self.RP7_checked = tkinter.Checkbutton(self, variable=CheckVariety_7, command=checked)
+        self.RP8_checked = tkinter.Checkbutton(self, variable=CheckVariety_8, command=checked)
+        self.RP9_checked = tkinter.Checkbutton(self, variable=CheckVariety_9, command=checked)
+        self.RPA_checked = tkinter.Checkbutton(self, variable=CheckVariety_A, command=checked)
+        self.RPB_checked = tkinter.Checkbutton(self, variable=CheckVariety_B, command=checked)
+        self.RPC_checked = tkinter.Checkbutton(self, variable=CheckVariety_C, command=checked)
+        self.RPD_checked = tkinter.Checkbutton(self, variable=CheckVariety_D, command=checked)
+        self.RPE_checked = tkinter.Checkbutton(self, variable=CheckVariety_E, command=checked)
+        self.RPF_checked = tkinter.Checkbutton(self, variable=CheckVariety_F, command=checked)
+        self.RPG_checked = tkinter.Checkbutton(self, variable=CheckVariety_G, command=checked)
+
+
+        self.RP0_checked.place(x=80, y=15)
+        self.RP1_checked.place(x=80, y=35)
+        self.RP2_checked.place(x=80, y=55)
+        self.RP3_checked.place(x=80, y=75)
+        self.RP4_checked.place(x=80, y=95)
+        self.RP5_checked.place(x=80, y=115)
+        self.RP6_checked.place(x=80, y=135)
+        self.RP7_checked.place(x=80, y=155)
+        self.RP8_checked.place(x=80, y=175)
+        self.RP9_checked.place(x=80, y=195)
+        self.RPA_checked.place(x=80, y=215)
+        self.RPB_checked.place(x=80, y=235)
+        self.RPC_checked.place(x=80, y=255)
+        self.RPD_checked.place(x=80, y=275)
+        self.RPE_checked.place(x=80, y=295)
+        self.RPF_checked.place(x=80, y=315)
+        self.RPG_checked.place(x=80, y=335)
+
+
+
+
+
     def renewRP_parameter(self):
 
         self.txtRP0value.delete(0.0, tkinter.END )
@@ -460,6 +560,10 @@ class App(tkinter.Tk):
     CenterPoints_y = list()
     Distributions = list()
     line_end_x =0
+    RP_Change_order = 0
+
+    Penalty_Min = 10000
+    Penalty_Min_RP_value = 0
 
 
     def __init__(self,video_source=0):
@@ -680,7 +784,7 @@ class App(tkinter.Tk):
         self.txtRRvalue = tkinter.Text(self, width=6, height=1)
         self.txtRRsteps = tkinter.Text(self, width=6, height=1)
         self.txtRVvalue.insert(0.0, "200")
-        self.txtRVsteps.insert(0.0, "20")
+        self.txtRVsteps.insert(0.0, "30")
         self.txtRRvalue.insert(0.0, "0")
         self.txtRRsteps.insert(0.0, "0")
         btnMove = tkinter.Button(self, text="Move", width=7, height=1, command = self.Start_RP_move)
@@ -691,6 +795,21 @@ class App(tkinter.Tk):
 
         self.txtX_axis_twisted_value = tkinter.Text(self, width = 6, height =1)
         self.txtX_axis_twisted_value.insert(0.0, "None")
+
+        self.Current_Changing_RP = tkinter.Text(self, width=6, height=1)
+        self.Current_Changing_RP.insert(0.0, "None")
+
+        self.RP_value_min = tkinter.Text(self,width=6,height=1)
+        self.RP_value_min.insert(0.0,"None")
+        self.L7 = tkinter.Label(self, text="Min_value")
+        self.L8 = tkinter.Label(self, text="Now Changing")
+
+        values_RP = ["RP" + str(i) for i in range(0, 10)]
+        values_RP2 = ["RP" + i for i in ["A", "B", "C", "D", "E", "F", "G"]]
+        values_RP = values_RP + values_RP2
+        self.combobox_Changing_RP = tkinter.ttk.Combobox(self, width=7, height=15, values=values_RP)
+
+
 
         lbl_5 = tkinter.Label(self, text="Serial Communication")
         RadioVariety_1 = tkinter.IntVar()
@@ -733,6 +852,13 @@ class App(tkinter.Tk):
         btnStop.place(x=1080-160, y=220)
         self.txtTwisted_value.place(x=1080-160, y=270)
         self.txtX_axis_twisted_value.place(x = 1000-160, y = 270)
+        self.Current_Changing_RP.place(x=1000-160, y=300)
+        self.combobox_Changing_RP.place(x=1000-160,y=330)
+        self.combobox_Changing_RP.set("RP?")
+
+        self.RP_value_min.place(x=1080-160, y=330)
+        self.L7.place(x=1080-160, y=305)
+        self.L8.place(x=910-160, y=330)
 
         lbl_5.place(x=1200-160, y=20)
         radio_Brate38400.place(x=1200-160, y=40)
@@ -1011,19 +1137,109 @@ class App(tkinter.Tk):
 
         if self.try_count!=1:
             if self.RP_Change_flag == True:
-                self.RandChoice = random.randint(0, 4)  # Choice 선택 원래 17
-                self.RP_Change_flag = False
-                if self.RandChoice == 2:
-                    self.RandChoice = 3
+                sending_message = ""
+                if self.RandChoice == 0:
+                    RP0 = self.Penalty_Min_RP_value
+                    sending_message = ("RP0," + str(RP0) + ";")
+                elif self.RandChoice == 1:
+                    RP1 = self.Penalty_Min_RP_value
+                    sending_message = ("RP1," + str(RP1) + ";")
+                elif self.RandChoice == 2:
+                    RP2 = self.Penalty_Min_RP_value
+                    sending_message = ("RP2," + str(RP2) + ";")
                 elif self.RandChoice == 3:
-                    self.RandChoice = 7
+                    RP3 = self.Penalty_Min_RP_value
+                    sending_message = ("RP3," + str(RP3) + ";")
                 elif self.RandChoice == 4:
+                    RP4 = self.Penalty_Min_RP_value
+                    sending_message = ("RP4," + str(RP4) + ";")
+                elif self.RandChoice == 5:
+                    RP5 = self.Penalty_Min_RP_value
+                    sending_message = ("RP5," + str(RP5) + ";")
+                elif self.RandChoice == 6:
+                    RP6 = self.Penalty_Min_RP_value
+                    sending_message = ("RP6," + str(RP6) + ";")
+                elif self.RandChoice == 7:
+                    RP7 = self.Penalty_Min_RP_value
+                    sending_message = ("RP7," + str(RP7) + ";")
+                elif self.RandChoice == 8:
+                    RP8 = self.Penalty_Min_RP_value
+                    sending_message = ("RP8," + str(RP8) + ";")
+                elif self.RandChoice == 9:
+                    RP9 = self.Penalty_Min_RP_value
+                    sending_message = ("RP9," + str(RP9) + ";")
+                elif self.RandChoice == 10:
+                    RPA = self.Penalty_Min_RP_value
+                    sending_message = ("RPA," + str(RPA) + ";")
+                elif self.RandChoice == 11:
+                    RPB = self.Penalty_Min_RP_value
+                    sending_message = ("RPB," + str(RPB) + ";")
+                elif self.RandChoice == 12:
+                    RPC = self.Penalty_Min_RP_value
+                    sending_message = ("RPC," + str(RPC) + ";")
+                elif self.RandChoice == 13:
+                    RPD = self.Penalty_Min_RP_value
+                    sending_message = ("RPD," + str(RPD) + ";")
+                elif self.RandChoice == 14:
+                    RPE = self.Penalty_Min_RP_value
+                    sending_message = ("RPE," + str(RPE) + ";")
+                elif self.RandChoice == 15:
+                    RPF = self.Penalty_Min_RP_value
+                    sending_message = ("RPF," + str(RPF) + ";")
+                elif self.RandChoice == 16:
+                    RPG = self.Penalty_Min_RP_value
+                    sending_message = ("RPG," + str(RPG) + ";")
+
+                s.write(sending_message.encode())
+                time.sleep(0.1)
+                #////////////////////////////////////////////////////////
+
+                
+                
+                
+                while True:
+                    self.RandChoice = random.randint(0, 4)  # Choice 선택 원래 17
+                    self.RP_Change_flag = False
+                    if self.RandChoice == 2:
+                        self.RandChoice = 3
+                    elif self.RandChoice == 3:
+                        self.RandChoice = 7
+                    elif self.RandChoice == 4:
+                        self.RandChoice = 11
+                    if RP_ischanged[self.RandChoice] == False:
+                        break
+                if self.RP_Change_order == 0:
+                    self.RandChoice = 0
+                    self.RP_Change_order = 1
+                elif self.RP_Change_order == 1:
+                    self.RandChoice = 1
+                    self.RP_Change_order = 2
+                elif self.RP_Change_order == 2:
                     self.RandChoice = 11
+                    self.RP_Change_order = 3
+                elif self.RP_Change_order == 3:
+                    self.RandChoice = 3
+                    self.RP_Change_order = 4
+                elif self.RP_Change_order == 4:
+                    self.RandChoice = 7
+
                 self.RP_Change_count = 10
                 self.Current_delta_value = (RP_mapping_max[self.RandChoice]-RP_mapping_min[self.RandChoice])/2
+
+                if self.RandChoice == 0:
+                    self.Current_delta_value = 10
                 self.txt_Deep.insert(tkinter.END, "=========================\n")
+                self.Penalty_Min = 10000
+                self.Penalty_Min_RP_value = 0
+                Templist = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"]
+                RP_ischanged[self.RandChoice] = True
+                self.combobox_Changing_RP.set("RP"+Templist[self.RandChoice])
+
+
             else:
                 self.Current_delta_value /= 2
+                if self.RandChoice == 0:
+                    self.Current_delta_value = 10
             Rand_value=random.random()
 
             print(self.RandChoice)
@@ -1196,6 +1412,7 @@ class App(tkinter.Tk):
         self.Start_flag = True
         self.End_flag = False
         s.write(("RV" + str(RP_value) + "," + str(RP_Step_value) + ";").encode())
+        RP_ischanged[self.RandChoice] = True
 
     def End_RP_move(self):
         global Run_end_x, Run_end_y, Run_end_inclination
@@ -1203,20 +1420,21 @@ class App(tkinter.Tk):
         self.Run_end_y = int((self.Red.max_y + self.Red.max_height / 2) * 0.5 + (self.Blue.max_y + self.Blue.max_height / 2) * 0.5)
 
         self.Run_end_inclination = math.atan((self.Red.max_y - self.Blue.max_y) / (self.Red.max_x - self.Blue.max_x))
+
+
         print("=============")
         print(self.Run_end_x)
         print(self.Run_end_y)
         # twisted_value = (self.Run_start_y - self.Run_end_y) / (self.Run_start_x - self.Run_end_x)
         twisted_value = abs(self.Run_end_inclination - self.Run_start_inclination)*180/math.pi
         X_axis_twisted_value = abs(self.Run_end_x - self.Run_start_x)
+        Run_Distance = abs(self.Run_start_y - self.Run_end_y)
 
         print(twisted_value)
         self.txtTwisted_value.delete(0.0,tkinter.END)
         self.txtTwisted_value.insert(0.0, str(twisted_value))
         self.txtX_axis_twisted_value.delete(0.0,tkinter.END)
         self.txtX_axis_twisted_value.insert(0.0, str(X_axis_twisted_value))
-
-
 
         AvgMid_points_x = sum(self.CenterPoints_x, 0.0) / len(self.CenterPoints_x)
         AvgMid_points_y = sum(self.CenterPoints_y, 0.0) / len(self.CenterPoints_y)
@@ -1231,13 +1449,58 @@ class App(tkinter.Tk):
         self.Start_flag = False
         self.End_flag = True
         #X_axis_twisted_value일단 생략
-        self.current_Peanalty = round(5 * twisted_value  + avg_distribution, 4)
+        self.current_Peanalty = round(5 * twisted_value  + avg_distribution - Run_Distance + 600, 4)
         print("틀어진 정도(x20):"+ str(twisted_value) + "도")
+        print("전진 거리 :" + str(Run_Distance))
         print("표준편차 :"+str(avg_distribution))
         print("현재 패널티:" + str(self.current_Peanalty))
         self.txt_Deep.insert(tkinter.END, "현재 패널티:" + str(self.current_Peanalty) + "\n")
+
+
         if self.try_count != 1:
             self.txt_Deep.insert(tkinter.END, "이전 패널티:" + str(self.prev_Penalty) + "\n")
+
+            if self.current_Peanalty < self.Penalty_Min:
+                self.Penalty_Min = self.current_Peanalty
+                Min_value = 0
+                if self.RandChoice == 0:
+                    Min_value = RP0
+                elif self.RandChoice == 1:
+                    Min_value = RP1
+                elif self.RandChoice == 2:
+                    Min_value = RP2
+                elif self.RandChoice == 3:
+                    Min_value = RP3
+                elif self.RandChoice == 4:
+                    Min_value = RP4
+                elif self.RandChoice == 5:
+                    Min_value = RP5
+                elif self.RandChoice == 6:
+                    Min_value = RP6
+                elif self.RandChoice == 7:
+                    Min_value = RP7
+                elif self.RandChoice == 8:
+                    Min_value = RP8
+                elif self.RandChoice == 9:
+                    Min_value = RP9
+                elif self.RandChoice == 10:
+                    Min_value = RPA
+                elif self.RandChoice == 11:
+                    Min_value = RPB
+                elif self.RandChoice == 12:
+                    Min_value = RPC
+                elif self.RandChoice == 13:
+                    Min_value = RPD
+                elif self.RandChoice == 14:
+                    Min_value = RPE
+                elif self.RandChoice == 15:
+                    Min_value = RPF
+                elif self.RandChoice == 16:
+                    Min_value = RPG
+                self.Penalty_Min_RP_value = Min_value
+                self.RP_value_min.delete(0.0, tkinter.END)
+                self.RP_value_min.insert(0.0, str(self.Penalty_Min_RP_value))
+
             if self.current_Peanalty> self.prev_Penalty:
                 global RP_sign_type
                 #self.delta_sign *= -1

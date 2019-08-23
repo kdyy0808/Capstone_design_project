@@ -17,10 +17,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="41" column="68" lean-forward="true" selection-start-line="41" selection-start-column="68" selection-end-line="41" selection-end-column="68" />
+            <state relative-caret-position="299">
+              <caret line="1458" lean-forward="true" selection-start-line="1458" selection-end-line="1458" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#9721#11379#0" />
+                <element signature="e#11421#15625#0" />
+                <element signature="e#15670#16783#0" />
+                <element signature="e#16825#18844#0" />
+                <element signature="e#19689#20199#0" />
+                <element signature="e#20236#22400#0" />
+                <element signature="e#22637#23120#0" />
+                <element signature="e#23165#23658#0" />
+                <element signature="e#23703#24191#0" />
+                <element signature="e#24238#24649#0" />
+                <element signature="e#34845#35184#0" />
+                <element signature="e#35219#35390#0" />
+                <element signature="e#35452#35898#0" />
+                <element signature="e#35932#36819#0" />
+                <element signature="e#36858#41618#0" />
+                <element signature="e#41679#41821#0" />
+                <element signature="e#41854#44405#0" />
+                <element signature="e#44443#45827#0" />
+                <element signature="e#45874#45929#0" />
               </folding>
             </state>
           </provider>
@@ -29,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/489560391/cv2/cv2/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
+            <state relative-caret-position="6688">
               <caret line="367" column="17" selection-start-line="367" selection-end-line="367" selection-end-column="17" />
             </state>
           </provider>
@@ -38,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/tkinter/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
+            <state relative-caret-position="21641">
               <caret line="1141" column="22" selection-start-line="1141" selection-start-column="22" selection-end-line="1141" selection-end-column="22" />
             </state>
           </provider>
@@ -80,10 +99,13 @@
       <find>12</find>
       <find>RP9</find>
       <find>Run_start_inclination</find>
+      <find>0</find>
+      <find>init</find>
     </findStrings>
     <replaceStrings>
       <replace>14</replace>
       <replace>RPG</replace>
+      <replace>False</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -107,7 +129,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-612" />
     <option name="y" value="-21" />
     <option name="width" value="1936" />
@@ -294,14 +316,17 @@
       <workItem from="1563451161120" duration="12040000" />
       <workItem from="1564046095073" duration="16363000" />
       <workItem from="1565358109907" duration="8930000" />
+      <workItem from="1565953634237" duration="14717000" />
+      <workItem from="1566387516154" duration="1896000" />
+      <workItem from="1566548078405" duration="13535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167473000" />
+    <option name="totallyTimeSpent" value="197621000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15425816" />
@@ -309,7 +334,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39696312" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -368,25 +393,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py</url>
-          <line>1012</line>
+          <line>1138</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py</url>
-          <line>1216</line>
+          <line>1436</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py</url>
-          <line>1242</line>
+          <line>1505</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="CenterPoints_x" />
-        <watch expression="self.CenterPoints_x" />
+        <watch expression="RP_Rand_checked" />
       </configuration>
     </watches-manager>
   </component>
@@ -396,7 +420,7 @@
     <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter.coverage" NAME="SerialRP_parameter Coverage Results" MODIFIED="1557881059572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_success.coverage" NAME="SerialRP_parameter_success Coverage Results" MODIFIED="1557858261696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter333.coverage" NAME="SerialRP_parameter333 Coverage Results" MODIFIED="1557881682687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508" />
-    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_CAM2.coverage" NAME="SerialRP_parameter+CAM2 Coverage Results" MODIFIED="1565371344800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter_CAM2.coverage" NAME="SerialRP_parameter+CAM2 Coverage Results" MODIFIED="1566581976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$Threading_test2.coverage" NAME="Threading_test2 Coverage Results" MODIFIED="1557335269174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/3rdCAM$SerialRP_parameter__1_.coverage" NAME="SerialRP_parameter (1) Coverage Results" MODIFIED="1557881357073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508" />
     <SUITE FILE_PATH="coverage/3rdCAM$Threading_test.coverage" NAME="Threading_test Coverage Results" MODIFIED="1557324713597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -485,20 +509,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter333.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2793">
-          <caret line="151" selection-start-line="151" selection-end-line="151" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter333.py" />
+    <entry file="file://D:/2018_RND/학과자료/캡스톤/소스코드/백업용/0508/SerialRP_parameter.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="834">
@@ -513,27 +525,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/tkinter/__init__.py">
+    <entry file="file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="1141" column="22" selection-start-line="1141" selection-start-column="22" selection-end-line="1141" selection-end-column="22" />
+        <state relative-caret-position="299">
+          <caret line="1458" lean-forward="true" selection-start-line="1458" selection-end-line="1458" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#9721#11379#0" />
+            <element signature="e#11421#15625#0" />
+            <element signature="e#15670#16783#0" />
+            <element signature="e#16825#18844#0" />
+            <element signature="e#19689#20199#0" />
+            <element signature="e#20236#22400#0" />
+            <element signature="e#22637#23120#0" />
+            <element signature="e#23165#23658#0" />
+            <element signature="e#23703#24191#0" />
+            <element signature="e#24238#24649#0" />
+            <element signature="e#34845#35184#0" />
+            <element signature="e#35219#35390#0" />
+            <element signature="e#35452#35898#0" />
+            <element signature="e#35932#36819#0" />
+            <element signature="e#36858#41618#0" />
+            <element signature="e#41679#41821#0" />
+            <element signature="e#41854#44405#0" />
+            <element signature="e#44443#45827#0" />
+            <element signature="e#45874#45929#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/489560391/cv2/cv2/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
+        <state relative-caret-position="6688">
           <caret line="367" column="17" selection-start-line="367" selection-end-line="367" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SerialRP_parameter+CAM2.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/tkinter/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="41" column="68" lean-forward="true" selection-start-line="41" selection-start-column="68" selection-end-line="41" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="21641">
+          <caret line="1141" column="22" selection-start-line="1141" selection-start-column="22" selection-end-line="1141" selection-end-column="22" />
         </state>
       </provider>
     </entry>
