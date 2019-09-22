@@ -60,3 +60,7 @@ https://github.com/reinforcement-learning-kr/lets-do-irl?fbclid=IwAR23F_HupWTcne
 직선과 점 사이 거리
 ---------------------------------------------
 https://gpgstudy.com/forum/viewtopic.php?t=22736
+
+------------------
+opencv 관련 사용법
+https://jangjy.tistory.com/21
